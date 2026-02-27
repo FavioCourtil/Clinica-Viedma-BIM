@@ -5,22 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clínica Viedma - Ampliación</title>
     
-    <!-- Librerías Externas (Iconos y Estilos) -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Configuración Base */
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #0f172a; /* Azul Pizarra Oscuro (Dark Slate) */
+            background-color: #0f172a;
             color: #ffffff;
             margin: 0;
             overflow-x: hidden;
         }
         
-        /* Fondo Técnico (Retícula Sutil) */
         .bg-tech-grid {
             background-image: 
                 linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
@@ -29,45 +26,23 @@
             background-position: center top;
         }
 
-        /* Tarjetas Principales (Hero Cards) */
         .hero-card {
-            background: rgba(30, 41, 59, 0.7); /* Azul oscuro semitransparente */
+            background: rgba(30, 41, 59, 0.7);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 160px;
         }
 
-        .hero-card:hover {
+        .hero-card-link:hover {
             background: rgba(30, 41, 59, 0.9);
-            border-color: #06b6d4; /* Cian Clínico */
+            border-color: #06b6d4;
             transform: translateY(-4px);
             box-shadow: 0 15px 30px -10px rgba(6, 182, 212, 0.2);
         }
 
-        /* Efecto de Brillo al pasar el mouse */
-        .hero-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
-            transition: 0.5s;
-        }
-
-        .hero-card:hover::after {
-            left: 100%;
-        }
-
-        /* Decoración de fondo en las tarjetas */
         .card-bg-icon {
             position: absolute;
             right: -20px;
@@ -77,23 +52,28 @@
             color: white;
             opacity: 0.03;
             transform: rotate(-15deg);
-            transition: 0.4s ease;
             pointer-events: none;
         }
 
-        .hero-card:hover .card-bg-icon {
-            opacity: 0.08;
-            transform: rotate(0deg) scale(1.1);
-        }
-
-        /* Badge de Estado */
         .status-badge {
             background: rgba(6, 182, 212, 0.1);
             color: #22d3ee;
             border: 1px solid rgba(6, 182, 212, 0.2);
         }
+
+        /* Botones internos para la nueva sección */
+        .inner-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.2s ease;
+        }
         
-        /* Animaciones de Entrada */
+        .inner-btn:hover {
+            background: rgba(6, 182, 212, 0.1);
+            border-color: rgba(6, 182, 212, 0.4);
+            transform: translateX(4px);
+        }
+        
         .fade-in-up {
             animation: fadeInUp 0.8s ease-out forwards;
             opacity: 0;
@@ -109,14 +89,13 @@
         .delay-3 { animation-delay: 0.3s; }
     </style>
 </head>
-<body class="min-h-screen bg-tech-grid flex flex-col items-center justify-center p-6">
+<body class="min-h-screen bg-tech-grid flex flex-col items-center justify-center p-6 pb-12">
 
-    <div class="w-full max-w-md relative z-10 flex flex-col gap-6">
+    <div class="w-full max-w-md relative z-10 flex flex-col gap-6 mt-4">
 
-        <!-- Header / Encabezado -->
+        <!-- Header -->
         <header class="text-center fade-in-up">
             <div class="inline-flex items-center justify-center p-4 rounded-full bg-[#1e293b] border border-slate-700 shadow-xl mb-5 ring-1 ring-white/10">
-                <!-- Icono Principal: Cruz Médica / Actividad -->
                 <i data-lucide="activity" class="text-[#06b6d4] w-8 h-8"></i>
             </div>
             
@@ -130,7 +109,6 @@
                 <div class="h-px w-8 bg-slate-700"></div>
             </div>
 
-            <!-- Badge de Estado -->
             <div class="mt-6 flex justify-center">
                 <span class="status-badge px-4 py-1.5 rounded-full text-[10px] font-bold tracking-wider uppercase flex items-center gap-2 shadow-lg shadow-cyan-900/20">
                     <span class="relative flex h-2 w-2">
@@ -142,36 +120,53 @@
             </div>
         </header>
 
-        <!-- SECCIÓN 1: CÓMPUTO MÉTRICO -->
-        <!-- IMPORTANTE: Reemplaza el '#' con tu URL real -->
-        <a href="https://app.powerbi.com/view?r=eyJrIjoiZWQ0NWJlYTItMjVlNy00NjU5LWJkODUtNDk3ZTRhMGQwMTI4IiwidCI6IjI2MWYyOGVmLWZlNmYtNGZmMi1hMzY4LTU1YTVmZjRhYmYwOCIsImMiOjR9&pageName=fda4f783057bcdfbb1c6"_blank" class="hero-card rounded-2xl p-6 group no-underline fade-in-up delay-2">
-            <!-- Icono decorativo de fondo -->
+        <!-- SECCIÓN 1: CÓMPUTO MÉTRICO (CONTENEDOR CON 2 BOTONES) -->
+        <div class="hero-card rounded-2xl p-6 fade-in-up delay-2">
             <i data-lucide="bar-chart-3" class="card-bg-icon"></i>
             
-            <div class="flex justify-between items-start z-10">
+            <div class="flex items-start z-10 relative mb-4">
                 <div class="p-3 rounded-xl bg-[#06b6d4]/10 text-[#22d3ee] ring-1 ring-[#06b6d4]/20">
-                    <i data-lucide="table-2" class="w-6 h-6"></i>
-                </div>
-                <div class="bg-white/5 p-2 rounded-full group-hover:bg-[#06b6d4] transition-colors">
-                    <i data-lucide="arrow-up-right" class="w-4 h-4 text-slate-400 group-hover:text-black"></i>
+                    <i data-lucide="calculator" class="w-6 h-6"></i>
                 </div>
             </div>
             
-            <div class="z-10 mt-4">
-                <h2 class="text-xl font-bold text-white mb-1 group-hover:text-[#22d3ee] transition-colors">Cómputo Métrico</h2>
-                <p class="text-xs text-slate-400 font-light leading-relaxed">
-                    Balance de superficies, análisis de costos y listados de materiales en tiempo real.
+            <div class="z-10 relative">
+                <h2 class="text-xl font-bold text-white mb-2">Cómputo Métrico</h2>
+                <!-- Texto Ajustado: Sin "integral" y sin "costos" -->
+                <p class="text-xs text-slate-400 font-light leading-relaxed mb-5">
+                    Análisis técnico de materiales por rubro y balance detallado de superficies.
                 </p>
+
+                <!-- BOTONES INTERNOS -->
+                <div class="flex flex-col gap-3">
+                    
+                    <!-- Botón 1: General -->
+                    <a href="https://app.speckle.systems/workspaces/favio01/dashboards/44114a280?dashboardToken=a78a0a6158869c34714ff2d104f65f950211c3914d" target="_blank" class="inner-btn rounded-xl p-3 flex items-center justify-between group no-underline">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="layout-list" class="w-4 h-4 text-[#06b6d4]"></i>
+                            <span class="text-sm font-medium text-slate-200 group-hover:text-white transition-colors">Proyecto Completo (Global)</span>
+                        </div>
+                        <i data-lucide="arrow-right" class="w-4 h-4 text-slate-500 group-hover:text-[#06b6d4] transition-colors"></i>
+                    </a>
+
+                    <!-- Botón 2: Estructura -->
+                    <a href="https://app.speckle.systems/workspaces/favio01/dashboards/488083a22?dashboardToken=a7af2e843afe6f8b0ac4c7f691c6e372f64be02847" target="_blank" class="inner-btn rounded-xl p-3 flex items-center justify-between group no-underline">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="gantt-chart-square" class="w-4 h-4 text-[#06b6d4]"></i>
+                            <span class="text-sm font-medium text-slate-200 group-hover:text-white transition-colors">Estructura de Hormigón</span>
+                        </div>
+                        <i data-lucide="arrow-right" class="w-4 h-4 text-slate-500 group-hover:text-[#06b6d4] transition-colors"></i>
+                    </a>
+                    
+                </div>
             </div>
-        </a>
+        </div>
 
         <!-- SECCIÓN 2: MODELO FEDERADO 3D -->
-        <!-- IMPORTANTE: Reemplaza el '#' con tu URL real -->
-        <a href="https://app.speckle.systems/projects/6ba610941b/models/all" target="_blank" class="hero-card rounded-2xl p-6 group no-underline fade-in-up delay-3">
-            <!-- Icono decorativo de fondo -->
+        <a href="https://app.speckle.systems/projects/6ba610941b/models/all" target="_blank" class="hero-card hero-card-link rounded-2xl p-6 group no-underline fade-in-up delay-3 flex flex-col justify-between">
             <i data-lucide="boxes" class="card-bg-icon"></i>
             
-            <div class="flex justify-between items-start z-10">
+            <div class="flex justify-between items-start z-10 relative">
                 <div class="p-3 rounded-xl bg-indigo-500/10 text-indigo-400 ring-1 ring-indigo-500/20">
                     <i data-lucide="box" class="w-6 h-6"></i>
                 </div>
@@ -180,7 +175,7 @@
                 </div>
             </div>
             
-            <div class="z-10 mt-4">
+            <div class="z-10 relative mt-4">
                 <h2 class="text-xl font-bold text-white mb-1 group-hover:text-indigo-300 transition-colors">Modelo Federado 3D</h2>
                 <p class="text-xs text-slate-400 font-light leading-relaxed">
                     Recorrido virtual interactivo. Arquitectura, estructura e instalaciones integradas.
@@ -189,7 +184,7 @@
         </a>
 
         <!-- Pie de Página -->
-        <footer class="mt-8 text-center fade-in-up delay-3 opacity-50 hover:opacity-100 transition-opacity">
+        <footer class="mt-6 text-center fade-in-up delay-3 opacity-50 hover:opacity-100 transition-opacity">
             <p class="text-[9px] text-slate-500 tracking-widest uppercase mb-2">
                 Documentación Confidencial
             </p>
@@ -201,11 +196,8 @@
 
     </div>
 
-    <!-- Script para inicializar los iconos -->
     <script>
         lucide.createIcons();
     </script>
 </body>
 </html>
-
-```
